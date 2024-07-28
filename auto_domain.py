@@ -22,7 +22,7 @@ class AutoDomain:
             publicUrl, localAddr = Cpolar().get_url()
             if publicUrl != "" and publicUrl != self.publicUrl:
                 self.publicUrl = publicUrl
-                print(f"update RedirectPizza {self.sourceUrl} => https://{publicUrl}")
+                print(f"update RedirectPizza https://{self.sourceUrl} => https://{publicUrl}")
                 redirectId = os.environ["REDIRECT_PIZZA_REDIRECT_ID"]
                 #print(redirectId)
                 bearerId = os.environ["REDIRECT_PIZZA_TOKEN"]
