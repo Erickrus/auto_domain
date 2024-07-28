@@ -12,9 +12,10 @@ class AutoDomain:
         self.sourceUrl = sourceUrl
 
     def start(self):
-        while True:
-            self.try_update_redirect()
-            time.sleep(60)
+        self.try_update_redirect()
+        # while True:
+        #     self.try_update_redirect()
+        #     time.sleep(60)
 
     def try_update_redirect(self):
         try:
@@ -23,7 +24,7 @@ class AutoDomain:
                 self.publicUrl = publicUrl
                 print(f"update RedirectPizza {self.sourceUrl} => https://{publicUrl}")
                 redirectId = os.environ["REDIRECT_PIZZA_REDIRECT_ID"]
-                print(redirectId)
+                #print(redirectId)
                 bearerId = os.environ["REDIRECT_PIZZA_TOKEN"]
                 RedirectPizza(bearerId = bearerId).update(
                     redirectId = redirectId,
