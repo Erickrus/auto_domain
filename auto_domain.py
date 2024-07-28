@@ -1,4 +1,5 @@
 import os
+import sys
 import traceback
 import time
 
@@ -13,15 +14,16 @@ class AutoDomain:
     def start(self):
         while True:
             self.try_update_redirect()
-            sleep(60)
+            time.sleep(60)
 
     def try_update_redirect(self):
         try:
             publicUrl, localAddr = Cpolar().get_url()
             if publicUrl != "" and publicUrl != self.publicUrl:
                 self.publicUrl = publicUrl
-                print(f"update RedirectPizza {sourceUrl} => https://{publicUrl}")
+                print(f"update RedirectPizza {self.sourceUrl} => https://{publicUrl}")
                 redirectId = os.environ["REDIRECT_PIZZA_REDIRECT_ID"]
+                print(redirectId)
                 bearerId = os.environ["REDIRECT_PIZZA_TOKEN"]
                 RedirectPizza(bearerId = bearerId).update(
                     redirectId = redirectId,
@@ -34,3 +36,6 @@ class AutoDomain:
                 print("tick")
         except:
             print(traceback.format_exc())
+
+if __name__ == "__main__":
+    AutoDomain(sys.argv[1]).start()
