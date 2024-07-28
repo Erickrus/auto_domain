@@ -11,7 +11,7 @@ class Cpolar:
         with zipfile.ZipFile("cpolar-stable-linux-amd64.zip", 'r') as zip_ref:
             zip_ref.extractall()        
         os.chmod("cpolar", 0o777)
-        os.remove(file_name)
+        os.remove("cpolar-stable-linux-amd64.zip")
         auth_token = os.environ["CPOLAR_AUTH_TOKEN"]
         os.system(f'./cpolar authtoken {auth_token}')
 
