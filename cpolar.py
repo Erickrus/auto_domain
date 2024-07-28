@@ -1,7 +1,20 @@
-import requests
+
 import json
+import os
+import requests
+import urllib.request
+import zipfile
 
 class Cpolar:
+    def install(self, url):
+        urllib.request.urlretrieve(url, "cpolar-stable-linux-amd64.zip")
+        with zipfile.ZipFile("cpolar-stable-linux-amd64.zip", 'r') as zip_ref:
+            zip_ref.extractall()        
+        os.chmod("cpolar", 0o777)
+        os.remove(file_name)
+        auth_token = os.environ["CPOLAR_AUTH_TOKEN"]
+        os.system(f'./cpolar authtoken {auth_token}')
+
     def get_url(self):
         publicUrl, localAddr = "", ""
         try:
