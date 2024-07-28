@@ -5,17 +5,23 @@ AutoDomain is a solution for automatically set up the tunnel and url redirect ba
 ## install cpolar
 
 ```
-export CPOLAR_AUTH_TOKEN=...
-```
-
-```
+from cpolar import Cpolar
+import getpass
+import os
+CPOLAR_AUTH_TOKEN = getpass.getpass('Enter CPOLAR_AUTH_TOKEN: ')
+os.environ["CPOLAR_AUTH_TOKEN"] = CPOLAR_AUTH_TOKEN
 Cpolar().install(url...)
 ```
 
 ## start auto_domain
 ```
-export REDIRECT_PIZZA_REDIRECT_ID=...
-export REDIRECT_PIZZA_TOKEN=...
+import getpass
+import os
 
-python3 auto_domain.py
+REDIRECT_PIZZA_TOKEN = getpass.getpass('Enter REDIRECT_PIZZA_TOKEN: ')
+
+os.environ["REDIRECT_PIZZA_REDIRECT_ID"] = '...'
+os.environ["REDIRECT_PIZZA_TOKEN"] = REDIRECT_PIZZA_TOKEN
+
+!python3 auto_domain.py url...
 ```
